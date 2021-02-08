@@ -23,6 +23,30 @@ export const pools = [
     callFee: 0.5,
   },
 
+  {
+    id: 'cake-spf-bnb',
+    logo: 'cake/sfp-bnb.svg',
+    name: 'SPF-BNB LP',
+    token: 'SPF-BNB LP',
+    tokenDescription: 'Uses: Pancake',
+    tokenAddress: '0xD41FDb03Ba84762dD66a0af1a6C8540FF1ba5dfb',
+    tokenDecimals: 18,
+    tokenDescriptionUrl: '#',
+    earnedToken: 'mooPancakeSFP-BNB',
+    earnedTokenAddress: '0xCa38d57755f29c9ad17AbB1A6ae059DdAD913A0e',
+    earnContractAddress: '0xCa38d57755f29c9ad17AbB1A6ae059DdAD913A0e',
+    pricePerFullShare: 1,
+    tvl: 0,
+    oracle: 'pancake-lp',
+    oracleId: 'cake-spf-bnb',
+    oraclePrice: 0,
+    depositsPaused: false,
+    status: 'active',
+    platform: 'Pancake',
+    assets: ['SFP', 'BNB'],
+    callFee: 0.5,
+  },
+
   // Disable until stable ~$1
   // {
   //   id: 'nyacash-nyac-usdt',
