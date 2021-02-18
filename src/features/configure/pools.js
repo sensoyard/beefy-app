@@ -117,31 +117,7 @@ export const pools = [
     assets: ['CROW', 'BNB'],
     callFee: 0.5,
   },
-
-  {
-    id: 'crow-busd-bnb',
-    logo: 'crow/busd.png',
-    name: 'BUSD-BNB LP',
-    token: 'BUSD-BNB LP',
-    tokenDescription: 'Uses: Pancake',
-    tokenAddress: '0x1B96B92314C44b159149f7E0303511fB2Fc4774f',
-    tokenDecimals: 18,
-    tokenDescriptionUrl: '#',
-    earnedToken: 'mooCrowBUSD-BNB',
-    earnedTokenAddress: '0x541f0b06c6ae82155e8b6af1af9ab9013fd1adb1',
-    earnContractAddress: '0x541f0b06c6ae82155e8b6af1af9ab9013fd1adb1',
-    pricePerFullShare: 1,
-    tvl: 0,
-    oracle: 'pancake',
-    oracleId: 'crow-busd-bnb',
-    oraclePrice: 0,
-    depositsPaused: false,
-    status: 'active',
-    platform: 'CrowFinance',
-    assets: ['BUSD', 'BNB'],
-    callFee: 0.5,
-  },
-
+  
   {
     id: 'cake-swgb-bnb',
     logo: 'cake/swgb-bnb.svg',
