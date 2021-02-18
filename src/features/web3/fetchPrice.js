@@ -16,7 +16,7 @@ const endpoints = {
   thugs: 'https://api.beefy.finance/thugs/tickers',
   thugsLp: 'https://api.beefy.finance/thugs/lps',
   spongeLp:   'https://api.beefy.finance/sponge/lps',
-  crowLp: 'http://localhost:3001/crow/lps',
+  crowLp: 'https://api.beefy.finance/crow/lps',
 };
 
 const WBNB = '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c';
