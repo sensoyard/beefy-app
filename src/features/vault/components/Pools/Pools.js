@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 
+import TVLLoader from './TVLLoader/TVLLoader';
 import { useConnectWallet } from '../../../home/redux/hooks';
 import { useFetchBalances, useFetchVaultsData, useFetchApys } from '../../redux/hooks';
 import VisiblePools from '../VisiblePools/VisiblePools';
@@ -17,22 +18,22 @@ const useStyles = makeStyles(styles);
 export default function Pools() {
   const { t } = useTranslation();
   const { web3, address } = useConnectWallet();
-  const { pools, fetchVaultsData } = useFetchVaultsData();
-  const { tokens, fetchBalances } = useFetchBalances();
-  const { apys, fetchApys } = useFetchApys();
+  const { pools, fetchVaultsData, fetchVaultsDataDone } = useFetchVaultsData();
+  const { tokens, fetchBalances, fetchBalancesDone } = useFetchBalances();
+  const { apys, fetchApys, fetchApysDone } = useFetchApys();
   const { poolsTvl } = usePoolsTvl(pools);
   const classes = useStyles();
 
   useEffect(() => {
     if (address && web3) {
-      fetchBalances({ address, web3, tokens });
-      fetchVaultsData({ address, web3, pools });
-      fetchApys();
-      const id = setInterval(() => {
+      const fetch = () => {
         fetchBalances({ address, web3, tokens });
         fetchVaultsData({ address, web3, pools });
         fetchApys();
-      }, FETCH_INTERVAL_MS);
+      };
+      fetch();
+
+      const id = setInterval(fetch, FETCH_INTERVAL_MS);
       return () => clearInterval(id);
     }
 
@@ -45,7 +46,14 @@ export default function Pools() {
       <Grid item xs={12}>
         <div className={classes.titles}>
           <h1 className={classes.title}>{t('Vault-MainTitle')}</h1>
-          <h1 className={classes.title}>TVL {formatGlobalTvl(poolsTvl)}</h1>
+          <h1 className={classes.title}>
+            TVL{' '}
+            {fetchVaultsDataDone && poolsTvl > 0 ? (
+              formatGlobalTvl(poolsTvl)
+            ) : (
+              <TVLLoader className={classes.titleLoader} />
+            )}
+          </h1>
         </div>
         <div className={classes.subtitles}>
           <h3 className={classes.subtitle}>{t('Vault-SecondTitle')}</h3>
@@ -53,7 +61,14 @@ export default function Pools() {
         </div>
       </Grid>
 
-      <VisiblePools pools={pools} apys={apys} tokens={tokens} />
+      <VisiblePools
+        pools={pools}
+        apys={apys}
+        tokens={tokens}
+        fetchBalancesDone={fetchBalancesDone}
+        fetchApysDone={fetchApysDone}
+        fetchVaultsDataDone={fetchVaultsDataDone}
+      />
     </Grid>
   );
 }
